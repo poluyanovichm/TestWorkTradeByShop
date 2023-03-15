@@ -235,7 +235,7 @@ extension Page1VC: UITableViewDelegate, UITableViewDataSource {
             return cell
         }
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "WallpaperTableView", for: indexPath) as? WallpaperTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "WallpaperTableView", for: indexPath) as? ProductTableViewCell
         
         switch indexPath.section {
             
@@ -264,8 +264,8 @@ extension Page1VC: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-extension Page1VC: WallpaperCollectionViewCellDelegate {
-    func collectionView(collectionviewcell: WallpaperCollectionViewCell?, index: Int, didTappedInTableViewCell: WallpaperTableViewCell) {
+extension Page1VC: ProductCollectionViewCellDelegate {
+    func collectionView(collectionviewcell: ProductCollectionViewCell?, index: Int, didTappedInTableViewCell: ProductTableViewCell) {
         print("tap")
         performSegue(withIdentifier: "goToPage2", sender: nil)
     }

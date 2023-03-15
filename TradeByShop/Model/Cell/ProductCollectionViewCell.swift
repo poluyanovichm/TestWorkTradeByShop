@@ -7,7 +7,7 @@
 
 import UIKit
 
-class WallpaperCollectionViewCell: UICollectionViewCell {
+class ProductCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var image: UIImageView!
     @IBOutlet weak var imageCategory: UIImageView!

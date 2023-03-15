@@ -73,6 +73,7 @@ class Page2VC: UIViewController {
     
     private func setup() {
         
+
         imagesCollectionView.dataSource = self
         imagesCollectionView.delegate = self
         

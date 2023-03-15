@@ -7,6 +7,14 @@
 
 import UIKit
 
+// delete back in tabBarButtonItem
+extension UIViewController {
+    open override func awakeAfter(using coder: NSCoder) -> Any? {
+        navigationItem.backButtonDisplayMode = .minimal // This will help us to remove text
+        return super.awakeAfter(using: coder)
+    }
+}
+
 extension UIColor {
     
     /// Hexadecimal value string (read-only).

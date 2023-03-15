@@ -1,5 +1,5 @@
 //
-//  WallpaperTableViewCell.swift
+//  ProductTableViewCell.swift
 //  TradeByShop
 //
 //  Created by Mikhail on 14.03.2023.
@@ -7,18 +7,18 @@
 
 import UIKit
 
-protocol WallpaperCollectionViewCellDelegate: AnyObject {
-    func collectionView(collectionviewcell: WallpaperCollectionViewCell?, index: Int, didTappedInTableViewCell: WallpaperTableViewCell)
+protocol ProductCollectionViewCellDelegate: AnyObject {
+    func collectionView(collectionviewcell: ProductCollectionViewCell?, index: Int, didTappedInTableViewCell: ProductTableViewCell)
     
 }
 
-class WallpaperTableViewCell: UITableViewCell {
+class ProductTableViewCell: UITableViewCell {
     
-    weak var cellDelegate: WallpaperCollectionViewCellDelegate?
+    weak var cellDelegate: ProductCollectionViewCellDelegate?
     
     var dictionaryCategory = [String: Any]()
     
-    var rowWithWallpapers: Product?
+    var rowWithProducts: Product?
 
     @IBOutlet var collectionView: UICollectionView!
     
@@ -46,24 +46,24 @@ class WallpaperTableViewCell: UITableViewCell {
     }
 }
 
-extension WallpaperTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension ProductTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     // The data we passed from the TableView send them to the CollectionView Model
     func updateCellWith(row: Product) {
                 
-        self.rowWithWallpapers = row
+        self.rowWithProducts = row
         self.collectionView.reloadData()
         
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let cell = collectionView.cellForItem(at: indexPath) as? WallpaperCollectionViewCell
+        let cell = collectionView.cellForItem(at: indexPath) as? ProductCollectionViewCell
         print("I'm tapping the \(indexPath.item)")
         self.cellDelegate?.collectionView(collectionviewcell: cell, index: indexPath.item, didTappedInTableViewCell: self)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        self.rowWithWallpapers?.flashSale?.count ?? 0
+        self.rowWithProducts?.flashSale?.count ?? 0
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -71,9 +71,9 @@ extension WallpaperTableViewCell: UICollectionViewDelegate, UICollectionViewData
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Wallpapercollectionviewcellid", for: indexPath) as? WallpaperCollectionViewCell {
+        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Wallpapercollectionviewcellid", for: indexPath) as? ProductCollectionViewCell {
             
-            if let file = self.rowWithWallpapers?.flashSale![indexPath.row].imageURL {
+            if let file = self.rowWithProducts?.flashSale![indexPath.row].imageURL {
                 
                 Service.shared.getImage(urlStr: file) { (image) in
                     
@@ -96,7 +96,7 @@ extension WallpaperTableViewCell: UICollectionViewDelegate, UICollectionViewData
             cell.categoryView.layer.cornerRadius = 8
             cell.categoryView.layer.masksToBounds = true
             
-            guard let product = rowWithWallpapers?.flashSale?[indexPath.item] else { return cell}
+            guard let product = rowWithProducts?.flashSale?[indexPath.item] else { return cell}
             
             if product.discount == nil {
                 
@@ -132,7 +132,7 @@ extension WallpaperTableViewCell: UICollectionViewDelegate, UICollectionViewData
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        guard let product = rowWithWallpapers?.flashSale?[indexPath.item] else {
+        guard let product = rowWithProducts?.flashSale?[indexPath.item] else {
             return CGSize(width: collectionView.bounds.height / 1.5, height: collectionView.bounds.height)}
 
         if product.discount == nil {
