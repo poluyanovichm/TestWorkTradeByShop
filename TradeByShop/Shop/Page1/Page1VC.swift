@@ -145,7 +145,7 @@ extension Page1VC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 100
+        return 60
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -189,7 +189,8 @@ extension Page1VC: UITableViewDelegate, UITableViewDataSource {
 
 extension Page1VC: WallpaperCollectionViewCellDelegate {
     func collectionView(collectionviewcell: WallpaperCollectionViewCell?, index: Int, didTappedInTableViewCell: WallpaperTableViewCell) {
-        
+        print("tap")
+        performSegue(withIdentifier: "goToPage2", sender: nil)
     }
 }
 

@@ -20,6 +20,11 @@
 		DA8335BE29C07EBD00C708A8 /* FlashSale.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8335BD29C07EBD00C708A8 /* FlashSale.swift */; };
 		DA8335C029C082A700C708A8 /* ProductCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8335BF29C082A700C708A8 /* ProductCollection.swift */; };
 		DA8335C229C0891200C708A8 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8335C129C0891200C708A8 /* NetworkManager.swift */; };
+		DAA1FC0E29C1A68D0051ABED /* Page2VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA1FC0D29C1A68D0051ABED /* Page2VC.swift */; };
+		DAA1FC1029C1AC630051ABED /* ImagesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA1FC0F29C1AC630051ABED /* ImagesCollectionViewCell.swift */; };
+		DAA1FC1229C1AC740051ABED /* ColorsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA1FC1129C1AC740051ABED /* ColorsCollectionViewCell.swift */; };
+		DAA1FC1429C1AD5C0051ABED /* ProductDiscriptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA1FC1329C1AD5C0051ABED /* ProductDiscriptions.swift */; };
+		DAA1FC1629C1B8990051ABED /* extension+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA1FC1529C1B8990051ABED /* extension+UIColor.swift */; };
 		DAAD311729C0EF0D002EB367 /* ProductsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAD311629C0EF0D002EB367 /* ProductsCollectionViewCell.swift */; };
 		DAAD311929C0F7AB002EB367 /* Users.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAD311829C0F7AB002EB367 /* Users.swift */; };
 		DAF6E20629C121C400AFBBB7 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF6E20529C121C400AFBBB7 /* ProfileVC.swift */; };
@@ -49,6 +54,11 @@
 		DA8335BD29C07EBD00C708A8 /* FlashSale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashSale.swift; sourceTree = "<group>"; };
 		DA8335BF29C082A700C708A8 /* ProductCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCollection.swift; sourceTree = "<group>"; };
 		DA8335C129C0891200C708A8 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		DAA1FC0D29C1A68D0051ABED /* Page2VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page2VC.swift; sourceTree = "<group>"; };
+		DAA1FC0F29C1AC630051ABED /* ImagesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesCollectionViewCell.swift; sourceTree = "<group>"; };
+		DAA1FC1129C1AC740051ABED /* ColorsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorsCollectionViewCell.swift; sourceTree = "<group>"; };
+		DAA1FC1329C1AD5C0051ABED /* ProductDiscriptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDiscriptions.swift; sourceTree = "<group>"; };
+		DAA1FC1529C1B8990051ABED /* extension+UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "extension+UIColor.swift"; sourceTree = "<group>"; };
 		DAAD311629C0EF0D002EB367 /* ProductsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsCollectionViewCell.swift; sourceTree = "<group>"; };
 		DAAD311829C0F7AB002EB367 /* Users.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Users.swift; sourceTree = "<group>"; };
 		DAF6E20529C121C400AFBBB7 /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
@@ -96,9 +106,8 @@
 		DA8335A329C077B800C708A8 /* Shop */ = {
 			isa = PBXGroup;
 			children = (
-				DA8335A129C0777F00C708A8 /* Page1VC.swift */,
-				DAAD311629C0EF0D002EB367 /* ProductsCollectionViewCell.swift */,
-				DA8335A829C0783000C708A8 /* TableViewCell */,
+				DAA1FC0B29C1A61D0051ABED /* Page1 */,
+				DAA1FC0C29C1A64A0051ABED /* Page2 */,
 			);
 			path = Shop;
 			sourceTree = "<group>";
@@ -132,9 +141,31 @@
 				DA8335BB29C07E6000C708A8 /* LatestCategory.swift */,
 				DA8335BD29C07EBD00C708A8 /* FlashSale.swift */,
 				DA8335BF29C082A700C708A8 /* ProductCollection.swift */,
+				DAA1FC1329C1AD5C0051ABED /* ProductDiscriptions.swift */,
 				DA8335C129C0891200C708A8 /* NetworkManager.swift */,
+				DAA1FC1529C1B8990051ABED /* extension+UIColor.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		DAA1FC0B29C1A61D0051ABED /* Page1 */ = {
+			isa = PBXGroup;
+			children = (
+				DA8335A129C0777F00C708A8 /* Page1VC.swift */,
+				DAAD311629C0EF0D002EB367 /* ProductsCollectionViewCell.swift */,
+				DA8335A829C0783000C708A8 /* TableViewCell */,
+			);
+			path = Page1;
+			sourceTree = "<group>";
+		};
+		DAA1FC0C29C1A64A0051ABED /* Page2 */ = {
+			isa = PBXGroup;
+			children = (
+				DAA1FC0D29C1A68D0051ABED /* Page2VC.swift */,
+				DAA1FC0F29C1AC630051ABED /* ImagesCollectionViewCell.swift */,
+				DAA1FC1129C1AC740051ABED /* ColorsCollectionViewCell.swift */,
+			);
+			path = Page2;
 			sourceTree = "<group>";
 		};
 		DAFB861629C0491D00A87292 = {
@@ -291,23 +322,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DAA1FC1429C1AD5C0051ABED /* ProductDiscriptions.swift in Sources */,
 				DAFB862729C0491D00A87292 /* ViewController.swift in Sources */,
 				DA8335B729C0790700C708A8 /* WallpaperCollectionViewCellModel.swift in Sources */,
 				DAAD311729C0EF0D002EB367 /* ProductsCollectionViewCell.swift in Sources */,
 				DAFB862329C0491D00A87292 /* AppDelegate.swift in Sources */,
+				DAA1FC0E29C1A68D0051ABED /* Page2VC.swift in Sources */,
 				DA8335AE29C0788D00C708A8 /* WallpaperTableViewCellModel.swift in Sources */,
 				DA8335C229C0891200C708A8 /* NetworkManager.swift in Sources */,
 				DA8335BE29C07EBD00C708A8 /* FlashSale.swift in Sources */,
 				DA8335B429C078E700C708A8 /* WallpaperCollectionViewCell.swift in Sources */,
 				DAFB863729C0578100A87292 /* SignInVC.swift in Sources */,
 				DAAD311929C0F7AB002EB367 /* Users.swift in Sources */,
+				DAA1FC1629C1B8990051ABED /* extension+UIColor.swift in Sources */,
 				DA8335BA29C0796E00C708A8 /* WallpaperModels.swift in Sources */,
 				DA8335A229C0777F00C708A8 /* Page1VC.swift in Sources */,
+				DAA1FC1229C1AC740051ABED /* ColorsCollectionViewCell.swift in Sources */,
 				DAF6E20629C121C400AFBBB7 /* ProfileVC.swift in Sources */,
 				DAFB863929C0630D00A87292 /* LogInVC.swift in Sources */,
 				DA8335AB29C0785B00C708A8 /* WallpaperTableViewCell.swift in Sources */,
 				DAFB862529C0491D00A87292 /* SceneDelegate.swift in Sources */,
 				DA8335BC29C07E6000C708A8 /* LatestCategory.swift in Sources */,
+				DAA1FC1029C1AC630051ABED /* ImagesCollectionViewCell.swift in Sources */,
 				DA8335C029C082A700C708A8 /* ProductCollection.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

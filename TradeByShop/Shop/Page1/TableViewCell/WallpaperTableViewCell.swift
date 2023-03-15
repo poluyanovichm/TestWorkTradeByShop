@@ -98,7 +98,7 @@ extension WallpaperTableViewCell: UICollectionViewDelegate, UICollectionViewData
                 }
             }
             
-            cell.image.contentMode = .redraw
+            cell.image.contentMode = .scaleAspectFill
             cell.layer.cornerRadius = 12
             cell.layer.masksToBounds = true
             

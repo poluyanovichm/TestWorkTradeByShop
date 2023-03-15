@@ -10,7 +10,11 @@ import UIKit
 class WallpaperCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var image: UIImageView!
+    @IBOutlet weak var imageCategory: UIImageView!
     
+    @IBOutlet weak var likeImage: UIImageView!
+    
+    @IBOutlet weak var addImage: UIImageView!
     
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
