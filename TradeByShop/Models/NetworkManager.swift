@@ -103,4 +103,26 @@ class Service: NSObject {
         } .resume()
     }
     
+    func getSearchList(completion: @escaping (Result<SearchList, Error>) -> ()) {
+        guard let url = URL(string: "https://run.mocky.io/v3/4c9cd822-9479-4509-803d-63197e5a9e19") else { return }
+        var urlRequest = URLRequest(url: url)
+
+        urlRequest.addValue("application/json", forHTTPHeaderField: "content-type")
+        let session = URLSession.shared
+        
+        session.dataTask(with: urlRequest) { data, resp, err in
+            //            guard let resp = resp else { return }
+            //            guard let data = data else { return }
+            
+            do {
+                let json = try JSONDecoder().decode(SearchList.self, from: data!)
+                completion(.success(json))
+                print(json)
+            } catch {
+                completion(.failure(error))
+                print(error)
+            }
+        } .resume()
+    }
+    
 }

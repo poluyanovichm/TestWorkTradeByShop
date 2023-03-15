@@ -14,10 +14,15 @@ class WallpaperCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var likeImage: UIImageView!
     
+    @IBOutlet weak var saleImage: UIImageView!
+    @IBOutlet weak var peopleImage: UIImageView!
     @IBOutlet weak var addImage: UIImageView!
     
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
+    
+    @IBOutlet weak var categoryLabel: UILabel!
+    
     @IBOutlet weak var categoryView: UIView!
     
     
