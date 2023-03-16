@@ -23,14 +23,13 @@ class MainTabBarVC: UITabBarController {
         
         let bezierPath = UIBezierPath(
             roundedRect: CGRect(
-                x: 0, // positionOnX,
+                x: 0,
                 y: tabBar.bounds.minY - positionOnY,
                 width: width,
                 height: height
             ),
-            cornerRadius: 20 /// 2
+            cornerRadius: 20
         )
-        
         
         roundLayer.path = bezierPath.cgPath
         tabBar.layer.insertSublayer(roundLayer, at: 0)
@@ -40,21 +39,7 @@ class MainTabBarVC: UITabBarController {
         
         roundLayer.fillColor = UIColor.white.cgColor
         
-        tabBar.tintColor = UIColor(hexString: "737294")  // .tabBarItemAccent
+        tabBar.tintColor = UIColor(hexString: "737294")
         tabBar.unselectedItemTintColor = .lightGray
-        
-        
-//        //tabBar.layer.maskedCorners = CACornerMask(rawValue: 9)
-//        tabBar.layer.cornerRadius = 20
-//        tabBar.layer.masksToBounds = true
-    }
-    
-    override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
-        
-//        if item.tag == 0 {
-//            tabBar.layer.cornerRadius = 20
-//            tabBar.layer.masksToBounds = true
-//        } else {
-//        }
     }
 }

@@ -12,6 +12,7 @@ class SignInVC: UIViewController {
     
     let realm = try! Realm()
     var users: Results<Users>!
+    private var tapGesture = UITapGestureRecognizer()
     
     @IBOutlet weak var firstNameView: UIView!
     @IBOutlet weak var lastNameView: UIView!
@@ -32,10 +33,13 @@ class SignInVC: UIViewController {
         super.viewDidLoad()
 
         setup()
-        
+        setupKeyBoard()
         users = realm.objects(Users.self)
-
-
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     private func setup() {
@@ -53,8 +57,43 @@ class SignInVC: UIViewController {
         firstNameTextField.textAlignment = .center
         lastNameTextField.textAlignment = .center
         emailTextField.textAlignment = .center
+        
+        signInButton.titleLabel?.font = UIFont(name: "MontserratRoman-Bold", size: 16)
 
     }
+    
+    private func setupKeyBoard() {
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillDisappear), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillAppear(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        
+        tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.tapGetstureDetected))
+        tapGesture.numberOfTapsRequired = 1
+    }
+    
+    @objc func tapGetstureDetected(){
+        view.endEditing(true)
+    }
+    
+    @objc func keyboardWillAppear(notification: NSNotification) {
+        print("keyboardWillAppear")
+        view.addGestureRecognizer(tapGesture)
+        
+        if ((notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) != nil {
+                if self.view.frame.origin.y == 0 {
+                    self.view.frame.origin.y -= 100
+                }
+            }
+    }
+
+    @objc func keyboardWillDisappear() {
+        print("keyboardWillDisappear")
+        view.removeGestureRecognizer(tapGesture)
+        if self.view.frame.origin.y != 0 {
+                self.view.frame.origin.y = 0
+            }
+    }
+
     
     @IBAction func editingDidEndFirstName(_ sender: UITextField) {
         if firstNameTextField.text == "" {
@@ -92,27 +131,33 @@ class SignInVC: UIViewController {
         
         var isValidUser = true
         
-        if firstNameTextField.text == "" ||
-            lastNameTextField.text == "" ||
-            emailTextField.text == "" {
-            isValidUser = false
-        }
-        
-        let userComplete = users.where {
-            ($0.firstName == firstNameTextField.text!)
-        }
-        
-        if !userComplete.isEmpty {
-            print("не пустой")
-            isValidUser = false
-            let alert = UIAlertController(title: "Ошибка регистрации", message: "Указанный email уже существует. Пожалуйста, введите новый email", preferredStyle: UIAlertController.Style.alert)
-            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
+        if CheckField.shared.validField(emailView, emailTextField) {
             
-        } else {
-            print("err")
+            let userComplete = users.where {
+                ($0.firstName == firstNameTextField.text!)
+            }
+            
+            if !userComplete.isEmpty {
+                isValidUser = false
+                let alert = UIAlertController(title: "Ошибка регистрации", message: "Указанный пользователь уже существует. Пожалуйста, введите другие данные", preferredStyle: UIAlertController.Style.alert)
+                alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+                
+            } else {
+                print("err")
+                isValidUser = true
+            }
+            
             isValidUser = true
+        } else {
+            isValidUser = false
         }
+        
+//        if firstNameTextField.text == "" ||
+//            lastNameTextField.text == "" ||
+//            emailTextField.text == "" {
+//            isValidUser = false
+//        }
         
         
         if isValidUser {
@@ -126,6 +171,10 @@ class SignInVC: UIViewController {
             try! realm.write {
                 realm.add(realmObject)
             }
+            
+            firstNameTextField.text = ""
+            lastNameTextField.text = ""
+            emailTextField.text = ""
             
             performSegue(withIdentifier: "registeredSuccessful", sender: nil)
         }

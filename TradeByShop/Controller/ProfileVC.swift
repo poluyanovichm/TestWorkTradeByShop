@@ -8,14 +8,13 @@
 import UIKit
 
 class ProfileVC: UIViewController {
-
     
     @IBOutlet weak var uploadItemButton: UIButton!
     @IBOutlet weak var userImageView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         setup()
     }
     
@@ -36,22 +35,16 @@ class ProfileVC: UIViewController {
     }
     
     @IBAction func TapChangePhotoButton(_ sender: UIButton) {
-        
         let vc = UIImagePickerController()
         vc.sourceType = .photoLibrary
         vc.delegate = self
         vc.allowsEditing = true
         present(vc, animated: true)
-        
     }
     
     @IBAction func tapBackButton(_ sender: UIButton) {
-        
         tabBarController?.selectedIndex = 0
     }
-    
-    
-    
 }
 
 extension ProfileVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -60,7 +53,6 @@ extension ProfileVC: UIImagePickerControllerDelegate, UINavigationControllerDele
         
         if let image = info[UIImagePickerController.InfoKey(rawValue: "UIImagePickerControllerEditedImage")] as? UIImage {
             userImageView.image = image
-
         }
         
         picker.dismiss(animated: true)
@@ -71,5 +63,5 @@ extension ProfileVC: UIImagePickerControllerDelegate, UINavigationControllerDele
         picker.dismiss(animated: true)
     }
     
-
+    
 }

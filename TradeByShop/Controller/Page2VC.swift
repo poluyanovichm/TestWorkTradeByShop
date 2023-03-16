@@ -40,6 +40,13 @@ class Page2VC: UIViewController {
         
         fetchData()
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        navigationController?.navigationBar.isHidden = false
+
+    }
 
     private func fetchData() {
         
@@ -49,8 +56,6 @@ class Page2VC: UIViewController {
                 print("Errrrrr", err)
                 
             case .success(let descriptions):
-                print(descriptions)
-                
                 self.productDescription = descriptions
                 
                 DispatchQueue.main.async {
@@ -72,8 +77,7 @@ class Page2VC: UIViewController {
     }
     
     private func setup() {
-        
-
+            
         imagesCollectionView.dataSource = self
         imagesCollectionView.delegate = self
         
@@ -166,9 +170,7 @@ extension Page2VC: UICollectionViewDelegate, UICollectionViewDataSource, UIColle
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "colorsCollectionViewCell", for: indexPath)
             cell.backgroundColor = .black
             
-            guard let colorList = productDescription?.colors else {
-                print("n il")
-                return cell }
+            guard let colorList = productDescription?.colors else { return cell }
             
             var colorStr = colorList[indexPath.item]
             print(colorStr)
@@ -244,7 +246,6 @@ extension Page2VC: UICollectionViewDelegate, UICollectionViewDataSource, UIColle
 
             for item in 0...collectionView.numberOfItems(inSection: 0) - 1 {
                 if item == indexPath.item {
-                    print(item)
                     cell.layer.borderWidth = 2
                     cell.layer.borderColor = UIColor.gray.cgColor
                 } else {

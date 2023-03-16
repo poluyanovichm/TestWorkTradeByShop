@@ -9,6 +9,11 @@ import UIKit
 
 class Page1VC: UIViewController {
     
+    private var searchList: SearchList?
+    var searchWords = [String]()
+    var dictionaryCategory = [String: Product]()
+    private var tapGesture = UITapGestureRecognizer()
+
     private let productsList = ["phones",
                                 "headphones",
                                 "games",
@@ -16,8 +21,9 @@ class Page1VC: UIViewController {
                                 "furniture",
                                 "kids"]
     
-    private var searchList: SearchList?
-    var avergens = [String]()
+    private let categoryList = ["Latest",
+                                "Flash Sale",
+                                "Brands"]
     
     @IBOutlet var tableView: UITableView!
     
@@ -27,21 +33,18 @@ class Page1VC: UIViewController {
     
     private var searchTableView: UITableView!
     
-    private let categoryList = ["Latest",
-                                "Flash Sale",
-                                "Brands"]
-    
-    var dictionaryCategory = [String: Product]()
-    var tappedKey = ""
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setup()
+        setupKeyBoard()
         fetchData()
+
     }
     
     private func setup() {
+        
+        navigationController?.navigationBar.isHidden = true
         
         /// setup search tableview
         searchTableView = UITableView(frame: CGRect(x: 50, y: 190, width: searchTextField.bounds.width, height: 200))
@@ -73,6 +76,29 @@ class Page1VC: UIViewController {
         
     }
     
+    private func setupKeyBoard() {
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillDisappear), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillAppear(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        
+        tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.tapGetstureDetected))
+        tapGesture.numberOfTapsRequired = 1
+    }
+    
+    @objc func tapGetstureDetected(){
+        view.endEditing(true)
+    }
+    
+    @objc func keyboardWillAppear(notification: NSNotification) {
+        print("keyboardWillAppear")
+        view.addGestureRecognizer(tapGesture)
+    }
+
+    @objc func keyboardWillDisappear() {
+        print("keyboardWillDisappear")
+        view.removeGestureRecognizer(tapGesture)
+    }
+    
     private func fetchData() {
         
         var isSuccesLoadData = false
@@ -83,12 +109,9 @@ class Page1VC: UIViewController {
                 print("Errrrrr", err)
                 
             case .success(let category):
-                print(category)
-                
                 let flashSale = ProductCategory.flashSale.rawValue
                 self.dictionaryCategory[flashSale] = category
                 isSuccesLoadData = true
-                print("true 1")
             }
         }
         
@@ -98,15 +121,10 @@ class Page1VC: UIViewController {
                 print("Errrrrr", err)
                 
             case .success(let category):
-                print(category)
-                
                 if isSuccesLoadData {
                     
                     let latest = ProductCategory.latest.rawValue
                     self.dictionaryCategory[latest] = category
-                    print("true 2")
-                } else {
-                    print("false 2")
                 }
                 
                 DispatchQueue.main.async {
@@ -114,14 +132,12 @@ class Page1VC: UIViewController {
                 }
             }
         }
-        
     }
     
     @IBAction func editingDidEndSearch(_ sender: UITextField) {
         if searchPlaceholderLabel.text == "" {
             searchPlaceholderLabel.isHidden = false
         }
-        
     }
     
     @IBAction func editingDidBeginSearch(_ sender: UITextField) {
@@ -129,17 +145,14 @@ class Page1VC: UIViewController {
     }
     
     @IBAction func editingChangedSearch(_ sender: UITextField) {
-        
-        
         guard let searchText = sender.text else { return }
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             
             if let searchList = self.searchList {
                 
-                self.avergens = (searchList.words?.filter{$0.lowercased().contains(searchText.lowercased())})!
-                print(self.avergens)
+                self.searchWords = (searchList.words?.filter{$0.lowercased().contains(searchText.lowercased())})!
                 
-                if !self.avergens.isEmpty {
+                if !self.searchWords.isEmpty {
                     
                     self.searchTableView.isHidden = false
                     self.searchTableView.reloadData()
@@ -158,7 +171,6 @@ class Page1VC: UIViewController {
                         print("Errrrrr", err)
                         
                     case .success(let searchList):
-                        print(searchList)
                         self.searchList = searchList
                         
                     }
@@ -176,7 +188,7 @@ extension Page1VC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        tableView == searchTableView ? avergens.count : 1
+        tableView == searchTableView ? searchWords.count : 1
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -189,7 +201,6 @@ extension Page1VC: UITableViewDelegate, UITableViewDataSource {
         } else {
             return 150
         }
-        
     }
     
     // Category Title
@@ -230,7 +241,9 @@ extension Page1VC: UITableViewDelegate, UITableViewDataSource {
         if tableView == searchTableView {
             let cell = tableView.dequeueReusableCell(withIdentifier: "SearchValueTableViewCell", for: indexPath) as! SearchValueTableViewCell
             
-            cell.searchTextLabel.text = avergens[indexPath.row]
+            if !searchWords.isEmpty {
+                cell.searchTextLabel.text = searchWords[indexPath.row]
+            }
             
             return cell
         }
@@ -240,18 +253,23 @@ extension Page1VC: UITableViewDelegate, UITableViewDataSource {
         switch indexPath.section {
             
         case 0:
-            print(ProductCategory.latest.rawValue)
+
             if let row = dictionaryCategory[ProductCategory.latest.rawValue]  {
                 cell?.updateCellWith(row: row)
-                
             }
             
         case 1:
-            print(ProductCategory.flashSale.rawValue)
+
             if let row = dictionaryCategory[ProductCategory.flashSale.rawValue]  {
                 cell?.updateCellWith(row: row)
-                
             }
+            
+        case 2:
+            print(ProductCategory.flashSale.rawValue)
+            if let row = dictionaryCategory[ProductCategory.latest.rawValue]  {
+                cell?.updateCellWith(row: row)
+            }
+            
         default: break
         }
         

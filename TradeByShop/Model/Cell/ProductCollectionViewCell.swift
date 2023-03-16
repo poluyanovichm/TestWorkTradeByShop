@@ -26,11 +26,20 @@ class ProductCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var categoryView: UIView!
     
     
+    @IBOutlet weak var widthNameLayout: NSLayoutConstraint!
+    @IBOutlet weak var heigthNameLayout: NSLayoutConstraint!
+    
+    @IBOutlet weak var heigtAddLayout: UIImageView!
+    @IBOutlet weak var widthAddLayout: UIImageView!
+    
+    @IBOutlet weak var categoryLayout: NSLayoutConstraint!
+    
+    
+    @IBOutlet weak var categoryToNameLayout: NSLayoutConstraint!
     
     override func awakeFromNib() {
         super.awakeFromNib()
 
-        
     }
     
 }

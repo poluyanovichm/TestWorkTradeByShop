@@ -9,17 +9,14 @@ import UIKit
 
 protocol ProductCollectionViewCellDelegate: AnyObject {
     func collectionView(collectionviewcell: ProductCollectionViewCell?, index: Int, didTappedInTableViewCell: ProductTableViewCell)
-    
 }
 
 class ProductTableViewCell: UITableViewCell {
     
     weak var cellDelegate: ProductCollectionViewCellDelegate?
-    
-    var dictionaryCategory = [String: Any]()
-    
+    //    var dictionaryCategory = [String: Any]()
     var rowWithProducts: Product?
-
+    
     @IBOutlet var collectionView: UICollectionView!
     
     override func awakeFromNib() {
@@ -30,7 +27,6 @@ class ProductTableViewCell: UITableViewCell {
         // TODO: need to setup collection view flow layout
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.scrollDirection = .horizontal
-//        flowLayout.itemSize = CGSize(width: 150, height: 300)
         flowLayout.minimumLineSpacing = 16.0
         flowLayout.minimumInteritemSpacing = 5.0
         self.collectionView.backgroundColor = .clear
@@ -50,7 +46,7 @@ extension ProductTableViewCell: UICollectionViewDelegate, UICollectionViewDataSo
     
     // The data we passed from the TableView send them to the CollectionView Model
     func updateCellWith(row: Product) {
-                
+        
         self.rowWithProducts = row
         self.collectionView.reloadData()
         
@@ -82,7 +78,7 @@ extension ProductTableViewCell: UICollectionViewDelegate, UICollectionViewDataSo
                         print("Errrrrr", err)
                         
                     case .success(let img):
-                    
+                        
                         DispatchQueue.main.async {
                             cell.image.image = img
                         }
@@ -108,13 +104,19 @@ extension ProductTableViewCell: UICollectionViewDelegate, UICollectionViewDataSo
                 cell.nameLabel.font = UIFont(name: "MontserratRoman-Bold", size: 12)
                 cell.priceLabel.font = UIFont(name: "MontserratRoman-Bold", size: 8)
                 cell.categoryLabel.font = UIFont(name: "MontserratRoman-Bold", size: 6)
-
+                
+                cell.widthNameLayout.constant = 50
+                cell.heigthNameLayout.constant = 20
+                cell.categoryLayout.constant = 40
+                cell.categoryToNameLayout.constant = -10
+                
+                
                 
             } else {
                 cell.nameLabel.font = UIFont(name: "MontserratRoman-Bold", size: 18)
                 cell.priceLabel.font = UIFont(name: "MontserratRoman-Bold", size: 14)
                 cell.categoryLabel.font = UIFont(name: "MontserratRoman-Bold", size: 12)
-
+                
             }
             
             cell.nameLabel.text = product.name
@@ -134,19 +136,17 @@ extension ProductTableViewCell: UICollectionViewDelegate, UICollectionViewDataSo
         
         guard let product = rowWithProducts?.flashSale?[indexPath.item] else {
             return CGSize(width: collectionView.bounds.height / 1.5, height: collectionView.bounds.height)}
-
-        if product.discount == nil {
-
-            return CGSize(width: collectionView.bounds.width / 3 - 20, height: collectionView.bounds.height)
-
-
-        } else {
-            return CGSize(width: collectionView.bounds.width / 2 - 15, height: collectionView.bounds.height)
-
-        }
         
-//        return CGSize(width: collectionView.bounds.width / 2 - 20, height: collectionView.bounds.height)
-
+        if product.discount == nil {
+            
+            return CGSize(width: collectionView.bounds.width / 3 - 20, height: collectionView.bounds.height)
+            
+            
+        } else {
+            
+            return CGSize(width: collectionView.bounds.width / 2 - 15, height: collectionView.bounds.height)
+            
+        }
         
     }
     
