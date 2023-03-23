@@ -16,13 +16,18 @@ class Service: NSObject {
     private let getSearchListURL = "https://run.mocky.io/v3/4c9cd822-9479-4509-803d-63197e5a9e19"
     
     static let shared = Service()
-        
-    func getFlashSale(completion: @escaping (Result<FlashSale, Error>) -> ()) {
-        guard let url = URL(string: getFlashSaleURL) else { return }
+    private let session = URLSession.shared
+    
+    private func putURLRequest(urlStr: String) -> URLRequest?  {
+        guard let url = URL(string: urlStr) else { return nil }
         var urlRequest = URLRequest(url: url)
         urlRequest.addValue("application/json", forHTTPHeaderField: "content-type")
-        let session = URLSession.shared
         
+        return urlRequest
+    }
+        
+    func getFlashSale(completion: @escaping (Result<FlashSale, Error>) -> ()) {
+        guard let urlRequest = putURLRequest(urlStr: getFlashSaleURL) else { return }
         session.dataTask(with: urlRequest) { data, resp, err in
         
             do {
@@ -35,11 +40,7 @@ class Service: NSObject {
     }
     
     func getLatestProducts(completion: @escaping (Result<LatestCategory, Error>) -> ()) {
-        guard let url = URL(string: getLatestProductsURL) else { return }
-        var urlRequest = URLRequest(url: url)
-        urlRequest.addValue("application/json", forHTTPHeaderField: "content-type")
-        let session = URLSession.shared
-        
+        guard let urlRequest = putURLRequest(urlStr: getLatestProductsURL) else { return }
         session.dataTask(with: urlRequest) { data, resp, err in
 
             do {
@@ -52,12 +53,7 @@ class Service: NSObject {
     }
     
     func getProductDescriptions(completion: @escaping (Result<ProductDescription, Error>) -> ()) {
-        guard let url = URL(string: getProductDescriptionsURL) else { return }
-        var urlRequest = URLRequest(url: url)
-        
-        urlRequest.addValue("application/json", forHTTPHeaderField: "content-type")
-        let session = URLSession.shared
-        
+        guard let urlRequest = putURLRequest(urlStr: getProductDescriptionsURL) else { return }
         session.dataTask(with: urlRequest) { data, resp, err in
             
             do {
@@ -70,10 +66,7 @@ class Service: NSObject {
     }
     
     func getImage(urlStr: String, completion: @escaping (Result<UIImage, Error>) -> ()) {
-        guard let url = URL(string: urlStr) else { return }
-        var urlRequest = URLRequest(url: url)
-        let session = URLSession.shared
-        
+        guard let urlRequest = putURLRequest(urlStr: urlStr) else { return }
         session.dataTask(with: urlRequest) { data, resp, err in
             if let err = err {
                 completion(.failure(err))
@@ -88,12 +81,7 @@ class Service: NSObject {
     }
     
     func getSearchList(completion: @escaping (Result<SearchList, Error>) -> ()) {
-        guard let url = URL(string: getSearchListURL) else { return }
-        var urlRequest = URLRequest(url: url)
-        
-        urlRequest.addValue("application/json", forHTTPHeaderField: "content-type")
-        let session = URLSession.shared
-        
+        guard let urlRequest = putURLRequest(urlStr: getSearchListURL) else { return }
         session.dataTask(with: urlRequest) { data, resp, err in
             
             do {

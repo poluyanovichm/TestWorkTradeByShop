@@ -67,13 +67,6 @@ class Page1VC: UIViewController {
         tableView.register(cellNib, forCellReuseIdentifier: "WallpaperTableView")
         tableView.dataSource = self
         tableView.delegate = self
-        
-        /// print all fonts xcode
-        //        for family in UIFont.familyNames.sorted() {
-        //            let names = UIFont.fontNames(forFamilyName: family)
-        //            print("Family: \(family) Font names: \(names)")
-        //        }
-        
     }
     
     private func setupKeyBoard() {
@@ -160,7 +153,7 @@ class Page1VC: UIViewController {
                 } else {
                     
                     self.searchTableView.isHidden = true
-                    
+
                 }
                 
             } else {

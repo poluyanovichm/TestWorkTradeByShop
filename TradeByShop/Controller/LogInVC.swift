@@ -51,7 +51,7 @@ class LogInVC: UIViewController {
         firstNameTextField.textAlignment = .center
         passTextField.textAlignment = .center
         
-        loginInButton.titleLabel?.font = UIFont(name: "MontserratRoman-Bold", size: 16)
+        loginInButton.configuration?.attributedTitle?.font = UIFont(name: "MontserratRoman-Bold", size: CGFloat(16))
     }
     
     private func setupKeyBoard() {
@@ -104,7 +104,6 @@ class LogInVC: UIViewController {
     @IBAction func tapLogInButton(_ sender: UIButton) {
         
         var isValidUser = true
-  
         
         if firstNameTextField.text == "" ||
             passTextField.text == "" {

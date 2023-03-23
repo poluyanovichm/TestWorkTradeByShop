@@ -27,7 +27,6 @@
 		DAAD311929C0F7AB002EB367 /* UsersModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAD311829C0F7AB002EB367 /* UsersModel.swift */; };
 		DAB03D9729C252F0005D0835 /* SearchValueTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAB03D9629C252F0005D0835 /* SearchValueTableViewCell.xib */; };
 		DADC592E29C2537800B611E4 /* WallpaperTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DADC592D29C2537800B611E4 /* WallpaperTableViewCell.xib */; };
-		DADC593129C25EF300B611E4 /* ColorsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADC593029C25EF300B611E4 /* ColorsCollectionViewCell.swift */; };
 		DADC593329C2729500B611E4 /* CheckField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADC593229C2729500B611E4 /* CheckField.swift */; };
 		DAF6E20629C121C400AFBBB7 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF6E20529C121C400AFBBB7 /* ProfileVC.swift */; };
 		DAFB862329C0491D00A87292 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFB862229C0491D00A87292 /* AppDelegate.swift */; };
@@ -62,7 +61,6 @@
 		DAAD311829C0F7AB002EB367 /* UsersModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersModel.swift; sourceTree = "<group>"; };
 		DAB03D9629C252F0005D0835 /* SearchValueTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SearchValueTableViewCell.xib; path = "../../../../../Downloads/TestWorkTradeByShop-main/TradeByShop/Shop/Page1/SearchValueTableViewCell.xib"; sourceTree = "<group>"; };
 		DADC592D29C2537800B611E4 /* WallpaperTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = WallpaperTableViewCell.xib; path = "../../../../../Downloads/TestWorkTradeByShop-main/TradeByShop/Shop/Page1/TableViewCell/WallpaperTableViewCell.xib"; sourceTree = "<group>"; };
-		DADC593029C25EF300B611E4 /* ColorsCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorsCollectionViewCell.swift; sourceTree = "<group>"; };
 		DADC593229C2729500B611E4 /* CheckField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckField.swift; sourceTree = "<group>"; };
 		DAF6E20529C121C400AFBBB7 /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		DAFB861F29C0491D00A87292 /* TradeByShop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TradeByShop.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -133,7 +131,6 @@
 				DA8335B229C078E700C708A8 /* ProductCollectionViewCell.swift */,
 				DA8335A929C0785B00C708A8 /* ProductTableViewCell.swift */,
 				DAA1FC0F29C1AC630051ABED /* ImagesCollectionViewCell.swift */,
-				DADC593029C25EF300B611E4 /* ColorsCollectionViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -349,7 +346,6 @@
 				DAA1FC1629C1B8990051ABED /* extension+UIColor.swift in Sources */,
 				DA8335BA29C0796E00C708A8 /* ProductModels.swift in Sources */,
 				DA8335A229C0777F00C708A8 /* Page1VC.swift in Sources */,
-				DADC593129C25EF300B611E4 /* ColorsCollectionViewCell.swift in Sources */,
 				DA6FBD5A29C23FC4005423BF /* SearchValueTableViewCell.swift in Sources */,
 				DAF6E20629C121C400AFBBB7 /* ProfileVC.swift in Sources */,
 				DAFB863929C0630D00A87292 /* LogInVC.swift in Sources */,

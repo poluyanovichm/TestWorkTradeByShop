@@ -58,7 +58,7 @@ class SignInVC: UIViewController {
         lastNameTextField.textAlignment = .center
         emailTextField.textAlignment = .center
         
-        signInButton.titleLabel?.font = UIFont(name: "MontserratRoman-Bold", size: 16)
+        signInButton.configuration?.attributedTitle?.font = UIFont(name: "MontserratRoman-Bold", size: CGFloat(16))
 
     }
     
@@ -152,13 +152,6 @@ class SignInVC: UIViewController {
         } else {
             isValidUser = false
         }
-        
-//        if firstNameTextField.text == "" ||
-//            lastNameTextField.text == "" ||
-//            emailTextField.text == "" {
-//            isValidUser = false
-//        }
-        
         
         if isValidUser {
             
